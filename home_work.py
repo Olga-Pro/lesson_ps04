@@ -43,7 +43,7 @@ user_text = input("Введите запрос для поиска в Викип
 
 browser = webdriver.Chrome()  # Объект браузера
 # Заглавная страница Википедии:
-url = "https://ru.wikipedia.org/wiki/%D0%97%D0%B0%D0%B3%D0%BB%D0%B0%D0%B2%D0%BD%D0%B0%D1%8F_%D1%81%D1%82%D1%80%D0%B0%D0%BD%D0%B8%D1%86%D0%B0"
+url = "https://ru.wikipedia.org"
 browser.get(url)
 search_box = browser.find_element(By.ID, "searchInput")  # Найти окно поиска на сайте
 search_box.send_keys(user_text)  # Ввод текста в окно поиска на сойте
@@ -53,10 +53,17 @@ a = browser.find_element(By.LINK_TEXT, user_text)  # Найти первый п�
 a.click()  # Клик на элемент
 time.sleep(5)
 
-#url = browser.current_url
-#print(url)
+new_url = browser.current_url
+print(new_url)
 
-user_choice1 = input("1/2/3 ").strip()
+browser.get(new_url)
+
+print("\nВыберите действие:")
+print("1: Показать параграфы статьи")
+print("2: Показать связанные статьи")
+print("3: Выйти из программы")
+user_choice1 = input("Ваш выбор: ").strip()
+
 
 match user_choice1:
     case "1":
